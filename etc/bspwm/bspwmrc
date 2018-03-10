@@ -58,4 +58,4 @@ bspc monitor --reset-desktops nogroup one two three four end;
 
 bspc wm --record-history on;
 
-# vim: set ts=4 sw=4 tw=0 et :
+# vim: set ft=sh :
