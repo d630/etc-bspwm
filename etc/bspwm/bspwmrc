@@ -57,9 +57,11 @@ bspc config pointer_follows_monitor true;
 bspc config mapping_events_count -1;
 bspc config ignore_ewmh_focus true;
 bspc config ignore_ewmh_fullscreen all;
+# bspc config ignore_ewmh_struts true;
 bspc config center_pseudo_tiled true;
 bspc config honor_size_hints false;
 bspc config remove_disabled_monitors true;
+# bspc config removal_adjustment true;
 bspc config remove_unplugged_monitors true;
 bspc config merge_overlapping_monitors true;
 
