@@ -38,7 +38,7 @@ bspc config initial_polarity second_child;
 bspc config directional_focus_tightness high;
 bspc config borderless_monocle true;
 bspc config gapless_monocle true;
-bspc config bspc config paddingless_monocle true;
+# bspc config paddingless_monocle true;
 # bspc config top_monocle_padding 0;
 # bspc config right_monocle_padding 0;
 # bspc config bottom_monocle_padding 0;
@@ -49,7 +49,7 @@ bspc config pointer_modifier mod4;
 bspc config pointer_action1 move;
 bspc config pointer_action2 resize_side;
 bspc config pointer_action3 resize_corner;
-bspc config click_to_focus true;
+bspc config click_to_focus button1;
 bspc config swallow_first_click true;
 bspc config focus_follows_pointer false;
 bspc config pointer_follows_focus true;
@@ -65,7 +65,20 @@ bspc config remove_disabled_monitors true;
 bspc config remove_unplugged_monitors true;
 bspc config merge_overlapping_monitors true;
 
-bspc monitor --reset-desktops nogroup one two three four end;
+bspc monitor -d 1 2 3 4 5 6 7 8 9 0;
+
+case ${PRODUCT_NAME_SUM:=$(get-product-name-by-md5sum)} in
+	(1cca3393c5c595d3236c7ad1bd16f0a4)
+		test -z "$VNCDESKTOP" && {
+			bspc query -M --names |
+			grep -F -q DP-4 &&
+				bspc monitor DP-4 -d 1 2 3 4 5;
+
+			bspc query -M --names |
+			grep -F -q DP-5 &&
+				bspc monitor DP-5 -d 6 7 8 9 0;
+		}
+esac;
 
 bspc wm --record-history on;
 
