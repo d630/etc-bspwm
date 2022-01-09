@@ -63,19 +63,10 @@ bspc config merge_overlapping_monitors true
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 
-case ${PRODUCT_NAME_SUM:=$(exec get-product-name-by-md5sum)} in
-    1cca3393c5c595d3236c7ad1bd16f0a4)
-        if test -z "$VNCDESKTOP"; then
-            if exec bspc query -M --names | grep -F -q DP-4; then
-                bspc monitor DP-4 -d 1 2 3 4 5
-            fi
-
-            if exec bspc query -M --names | grep -F -q DP-5; then
-                bspc monitor DP-5 -d 6 7 8 9 0
-            fi
-        fi
-        ;;
-esac
+if test -z "$VNCDESKTOP" && test "$(exec bspc query -M | exec wc -l)" -gt 1; then
+    bspc monitor primary -d 1 2 3 4 5
+    bspc monitor ^2 -d 6 7 8 9 0
+fi
 
 bspc wm --record-history on
 
