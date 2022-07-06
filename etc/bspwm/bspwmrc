@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if test "$X_DPI" -gt 96; then
+if test "${X_DPI:-}" -ge 192; then
     bspc config top_padding 16
     bspc config right_padding 12
     bspc config bottom_padding 16
